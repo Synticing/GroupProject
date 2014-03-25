@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Hello from Facelets
+        <h:form prependId="false">  
+            <p:dataTable id="dataTable" var="actor" value="#{actorController.actors}"  
+                         paginator="true" rows="10"  
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                         rowsPerPageTemplate="5,10,15"
+                         emptyMessage="No actors found with given criteria" filteredValue="#{actorController.filteredActors}">  
+                <f:facet name="header">  
+                    <p:outputPanel>  
+                        <h:outputText value="Search all fields:" />  
+                        <p:inputText id="globalFilter" onkeyup="carsTable.filter()" style="width:150px" />  
+                    </p:outputPanel> 
+                </f:facet>  
+
+                <p:column sortBy="firstName" filterBy="firstName"
+                          footerText="contains"
+                          filterMatchMode="contains">  
+                    <f:facet name="header">  
+                        <h:outputText value="First Name" />  
+                    </f:facet>  
+                    <h:outputText value="#{actor.firstName}" />  
+                </p:column>  
+
+                <p:column sortBy="lastName" filterBy="lastName"
+                          footerText="contains"
+                          filterMatchMode="contains">  
+                    <f:facet name="header">  
+                        <h:outputText value="Last Name" />  
+                    </f:facet>  
+                    <h:outputText value="#{actor.lastName}" />  
+                </p:column>  
+ 
+            </p:dataTable>  
+
+        </h:form>   
+    </h:body>
+</html>
+
